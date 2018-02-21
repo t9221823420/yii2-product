@@ -14,7 +14,8 @@
   "minimum-stability": "stable",
   "require": {
     "yozh/yii2-base": "@dev",
-    "yozh/yii2-crud-v1": "@dev"
+    "yozh/yii2-crud-v1": "@dev",
+    "yozh/yii2-taxonomy": "@dev",
   },
   "extra": {
     "bootstrap": "yozh\\product\\Bootstrap"

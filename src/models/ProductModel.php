@@ -3,8 +3,11 @@
 namespace yozh\product\models;
 
 use Yii;
+use yozh\taxonomy\models\Taxonomy;
+use yozh\crud\models\DefaultModel as ActiveRecord;
+// use \yii\db\ActiveRecord;
 
-class ProductModel extends \yii\db\ActiveRecord
+class ProductModel extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -13,65 +16,39 @@ class ProductModel extends \yii\db\ActiveRecord
     {
         return 'product';
     }
+	
+	public function rules()
+	{
+		return [
+			[['taxonomy_id', 'name'], 'required'],
+			[['taxonomy_id'], 'integer'],
+			[['price'], 'number'],
+			[['name'], 'string', 'max' => 256],
+			[['units'], 'string', 'max' => 10],
+			[['taxonomy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Taxonomy::className(), 'targetAttribute' => ['taxonomy_id' => 'id']],
+		];
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function attributeLabels()
+	{
+		return [
+			'id' => 'ID',
+			'taxonomy_id' => 'Taxonomy ID',
+			'name' => 'Name',
+			'price' => 'Price',
+			'units' => 'Units',
+		];
+	}
+	
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['id'], 'required'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-        ];
-    }
-	
-	public function attributeIndexList()
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getTaxonomy()
 	{
-		return [
-			'id',
-		];
+		return $this->hasOne(Taxonomy::className(), ['id' => 'taxonomy_id']);
 	}
-	
-	public function attributeViewList()
-	{
-		return [
-			'id',
-		];
-	}
-	
-	public function attributeCreateList()
-	{
-		return $this->attributeEditList();
-	}
-	
-	public function attributeUpdateList()
-	{
-		return $this->attributeEditList();
-	}
-	
-	public function attributeEditList()
-	{
-		return [
-			'id',
-		];
-	}
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-	/*
-    public function getRelationRecords()
-    {
-        return $this->hasMany(RefModel::className(), ['ref_id' => 'table_id']);
-    }
-	*/
 }

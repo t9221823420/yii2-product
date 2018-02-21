@@ -3,20 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `table`.
+ * Handles the creation of table `product`.
  */
-class m180219_103041_create_table_table extends Migration
+class m180221_153437_create_product_table extends Migration
 {
-	protected static $_table = 'table';
+	protected static $_table = 'product';
 	
 	protected static $_references = [
-		/*
+		
 		[
-			'refTable'  => 'tree',
+			'refTable'  => 'taxonomy',
 			'refColumn' => 'id',
-			'column'    => 'tree_id',
+			'column'    => 'taxonomy_id',
 		],
-		*/
+	
 	];
 	
 	public function safeUp()
@@ -25,6 +25,10 @@ class m180219_103041_create_table_table extends Migration
 		
 		$this->createTable( $table, [
 			'id'      => $this->primaryKey(),
+			'taxonomy_id' => $this->bigInteger( 20 )->notNull(),
+			'name'    => $this->string( 256 )->notNull(),
+			'price'   => $this->decimal( 10, 2 )->defaultValue( 0 ),
+			'units'   => $this->string( 10 )->null(),
 		] );
 		
 		$refTable = $refColumn = $column = null;

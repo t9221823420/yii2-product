@@ -1,0 +1,22 @@
+.kv-tree-container
+{
+    padding: 0;
+}
+
+.kv-tree-container .kv-tree li,
+.kv-tree-container .kv-tree li ul
+{
+    border: none;
+    margin-left: 0;
+}
+
+.kv-tree-container .ul.kv-tree,
+.kv-tree-container .kv-tree ul
+{
+    padding-left: 0 !important;
+}
+
+.kv-node-icon
+{
+    display: none !important;
+}
