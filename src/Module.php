@@ -2,9 +2,7 @@
 
 namespace yozh\product;
 
-use yii\base\Module as BaseModule;
-
-
+use yozh\base\Module as BaseModule;
 
 class Module extends BaseModule
 {
