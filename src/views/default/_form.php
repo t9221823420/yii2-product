@@ -6,6 +6,8 @@ use yozh\taxonomy\models\Taxonomy;
 use kartik\tree\TreeViewInput;
 use kartik\icons\Icon;
 use yozh\product\AssetsBundle;
+use yii\bootstrap\Tabs;
+use yozh\properties\PropertiesWidget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\InvestPlan */
@@ -16,12 +18,13 @@ $attributes = $model->attributes;
 $rootNode = Taxonomy::find( [ 'name' => 'Category' ] )->one();
 
 AssetsBundle::register( $this );
-Icon::map($this, Icon::FA);
+Icon::map( $this, Icon::FA );
 ?>
 
-<div class="invest-plan-form">
-	
-	<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(); ?>
+
+<?php ob_start(); ?>
+<div class="form">
 	
 	<?php $fields = $form->fileds( $model,
 		method_exists( $model, 'attributeEditList' )
@@ -32,23 +35,24 @@ Icon::map($this, Icon::FA);
 	
 	//$rootNode = ( static::CLASSNAME )::find( [ 'name' => static::VOCABULARY_NAME ] )->one() )
 	
-	$fields['taxonomy_id'] = $form->field($model, 'taxonomy_id')->widget(TreeViewInput::classname(),[
+	$fields['taxonomy_id'] = $form->field( $model, 'taxonomy_id' )->widget( TreeViewInput::classname(), [
 		'query'          => Taxonomy::find()
-		    ->where(['root' => $rootNode->root,])
-		    ->andWhere(['<>', 'id', $rootNode->id ])
-		    ,
+		                            ->where( [ 'root' => $rootNode->root, ] )
+		                            ->andWhere( [ '<>', 'id', $rootNode->id ] )
+		,
 		'headingOptions' => [ 'label' => Yii::t( 'app', 'Category' ) ],
 		'rootOptions'    => [
-		        'class' => 'hide',
-        ],
+			'class' => 'hide',
+		],
 		'fontAwesome'    => true,
 		'multiple'       => false,
 		
 		'iconEditSettings' => [
-		    'show' => 'none',
-        ],
+			'show' => 'none',
+		],
 		//'options'        => [ 'disabled' => false ],
-	] );;
+	] )
+	;;
 	
 	foreach( $fields as $field ) {
 		print $field;
@@ -59,7 +63,36 @@ Icon::map($this, Icon::FA);
     <div class="form-group">
 		<?= Html::submitButton( Yii::t( 'app', 'Save' ), [ 'class' => 'btn btn-success' ] ) ?>
     </div>
-	
-	<?php ActiveForm::end(); ?>
 
 </div>
+<?php $formContent = ob_get_clean(); ?>
+
+<?php ob_start(); ?>
+<?= PropertiesWidget::widget( [
+	'form' => $form,
+	'model' => $model,
+] ); ?>
+<?php $propetiesContent = ob_get_clean(); ?>
+
+<?php if( $model->isNewRecord ): ?>
+	<?= $formContent; ?>
+
+<?php else: ?>
+	<?= Tabs::widget( [
+		'items' => [
+			[
+				'label'   => Yii::t( 'product', 'Model' ),
+				'content' => $formContent,
+				//'active'  => true,
+			],
+			[
+				'label'   => Yii::t( 'product', 'Properties' ),
+				'content' => $propetiesContent,
+				'active'  => true,
+			],
+		],
+	] ); ?>
+
+<?php endif; ?>
+
+<?php ActiveForm::end(); ?>

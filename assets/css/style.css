@@ -1,22 +1,33 @@
-.kv-tree-container
-{
+.kv-tree-container {
     padding: 0;
 }
 
 .kv-tree-container .kv-tree li,
-.kv-tree-container .kv-tree li ul
-{
+.kv-tree-container .kv-tree li ul {
     border: none;
     margin-left: 0;
 }
 
 .kv-tree-container .ul.kv-tree,
-.kv-tree-container .kv-tree ul
-{
+.kv-tree-container .kv-tree ul {
     padding-left: 0 !important;
 }
 
-.kv-node-icon
-{
+.kv-node-icon {
     display: none !important;
+}
+
+.product .tab-content {
+    padding: 20px 0;
+}
+
+.product .form-group.horizontal {
+    display: table-cell;
+    float: none;
+    min-width: 200px;
+    padding: 0 20px 10px 0;
+}
+
+.pull-bottom {
+    vertical-align: bottom;
 }
