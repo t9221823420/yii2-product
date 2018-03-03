@@ -70,7 +70,7 @@ Icon::map( $this, Icon::FA );
 <?php ob_start(); ?>
 <?= PropertiesWidget::widget( [
 	'form' => $form,
-	'model' => $model,
+	'ownerModel' => $model,
 ] ); ?>
 <?php $propetiesContent = ob_get_clean(); ?>
 

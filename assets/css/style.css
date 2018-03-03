@@ -21,13 +21,15 @@
     padding: 20px 0;
 }
 
-.product .form-group.horizontal {
+.product .new-property-form .form-group
+{
     display: table-cell;
     float: none;
     min-width: 200px;
-    padding: 0 20px 10px 0;
+    padding-right: 20px;
 }
 
-.pull-bottom {
+.product .form-group.horizontal.btn-group {
+    padding: 10px 20px;
     vertical-align: bottom;
 }
