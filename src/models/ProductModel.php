@@ -46,7 +46,7 @@ class ProductModel extends ActiveRecord
 	public function behaviors()
 	{
 		return array_merge_recursive( parent::behaviors(), [
-			PropertiesBehavior::className(),
+			'properties' => PropertiesBehavior::className(),
 		]);
 	}
 	
