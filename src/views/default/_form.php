@@ -5,7 +5,7 @@ use yozh\form\components\ActiveForm;
 use yozh\taxonomy\models\Taxonomy;
 use kartik\tree\TreeViewInput;
 use kartik\icons\Icon;
-use yozh\product\AssetsBundle;
+use yozh\product\AssetBundle;
 use yii\bootstrap\Tabs;
 use yozh\properties\PropertiesWidget;
 
@@ -17,7 +17,7 @@ $attributes = $model->attributes;
 
 $rootNode = Taxonomy::find( [ 'name' => 'Category' ] )->one();
 
-AssetsBundle::register( $this );
+AssetBundle::register( $this );
 Icon::map( $this, Icon::FA );
 ?>
 
