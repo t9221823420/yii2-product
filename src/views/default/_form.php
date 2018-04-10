@@ -26,7 +26,7 @@ Icon::map( $this, Icon::FA );
 <?php ob_start(); ?>
 <div class="form">
 	
-	<?php $fields = $form->fileds( $model,
+	<?php $fields = $form->fields( $model,
 		method_exists( $model, 'attributeEditList' )
 			? $model->attributeEditList()
 			: array_keys( $model->attributes ),
