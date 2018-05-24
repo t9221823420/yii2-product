@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yozh\form\components\ActiveForm;
+use yozh\form\ActiveForm;
 use yozh\taxonomy\models\Taxonomy;
 use kartik\tree\TreeViewInput;
 use kartik\icons\Icon;

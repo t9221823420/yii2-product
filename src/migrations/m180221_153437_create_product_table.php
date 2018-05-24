@@ -13,7 +13,7 @@ class m180221_153437_create_product_table extends Migration
 		
 		[
 			'refTable'  => 'taxonomy',
-			'refColumn' => 'id',
+			'refColumns' => 'id',
 			'column'    => 'taxonomy_id',
 		],
 	
