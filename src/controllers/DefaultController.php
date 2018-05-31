@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 
 class DefaultController extends Controller
 {
-	protected static function defaultModel()
+	public static function defaultModelClass()
 	{
 		return ProductModel::className();
 	}
