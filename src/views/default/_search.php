@@ -17,21 +17,21 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($Model, 'id') ?>
 
-    <?= $form->field($model, '_deleted') ?>
+    <?= $form->field($Model, '_deleted') ?>
 
-    <?= $form->field($model, 'begin') ?>
+    <?= $form->field($Model, 'begin') ?>
 
-    <?= $form->field($model, 'end') ?>
+    <?= $form->field($Model, 'end') ?>
 
-    <?= $form->field($model, 'vehicle_id') ?>
+    <?= $form->field($Model, 'vehicle_id') ?>
 
-    <?php // echo $form->field($model, 'odometr') ?>
+    <?php // echo $form->field($Model, 'odometr') ?>
 
-    <?php // echo $form->field($model, 'project_id') ?>
+    <?php // echo $form->field($Model, 'project_id') ?>
 
-    <?php // echo $form->field($model, 'engineers') ?>
+    <?php // echo $form->field($Model, 'engineers') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t( 'app', 'Search'), ['class' => 'btn btn-primary']) ?>

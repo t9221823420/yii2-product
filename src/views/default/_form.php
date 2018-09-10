@@ -10,10 +10,10 @@ use yii\bootstrap\Tabs;
 use yozh\properties\PropertiesWidget;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\InvestPlan */
+/* @var $Model common\models\InvestPlan */
 /* @var $form yii\widgets\ActiveForm */
 
-$attributes = $model->attributes;
+$attributes = $Model->attributes;
 
 $rootNode = Taxonomy::find( [ 'name' => 'Category' ] )->one();
 
@@ -26,16 +26,16 @@ Icon::map( $this, Icon::FA );
 <?php ob_start(); ?>
 <div class="form">
 	
-	<?php $fields = $form->fields( $model,
-		method_exists( $model, 'attributeEditList' )
-			? $model->attributeEditList()
-			: array_keys( $model->attributes ),
-		false
+	<?php $fields = $form->fields( $Model,
+		method_exists( $Model, 'attributesEditList' )
+			? $Model->attributesEditList()
+			: array_keys( $Model->attributes ),
+		[ 'print' => false, ]
 	);
 	
 	//$rootNode = ( static::CLASSNAME )::find( [ 'name' => static::VOCABULARY_NAME ] )->one() )
 	
-	$fields['taxonomy_id'] = $form->field( $model, 'taxonomy_id' )->widget( TreeViewInput::classname(), [
+	$fields['taxonomy_id'] = $form->field( $Model, 'taxonomy_id' )->widget( TreeViewInput::classname(), [
 		'query'          => Taxonomy::find()
 		                            ->where( [ 'root' => $rootNode->root, ] )
 		                            ->andWhere( [ '<>', 'id', $rootNode->id ] )
@@ -70,11 +70,11 @@ Icon::map( $this, Icon::FA );
 <?php ob_start(); ?>
 <?= PropertiesWidget::widget( [
 	'form' => $form,
-	'ownerModel' => $model,
+	'ownerModel' => $Model,
 ] ); ?>
 <?php $propetiesContent = ob_get_clean(); ?>
 
-<?php if( $model->isNewRecord ): ?>
+<?php if( $Model->isNewRecord ): ?>
 	<?= $formContent; ?>
 
 <?php else: ?>

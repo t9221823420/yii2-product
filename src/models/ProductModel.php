@@ -32,7 +32,7 @@ class ProductModel extends ActiveRecord
 	/**
 	 * {@inheritdoc}
 	 */
-	public function attributeLabels()
+	public function attributeLabels( ?array $only = null, ?array $except = null, ?bool $schemaOnly = false )
 	{
 		return [
 			'id'          => 'ID',

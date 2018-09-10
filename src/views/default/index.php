@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 
-include '_header.php';
+include __DIR__ . '/_header.php';
 
 ?>
 <div class="<?= "$moduleId $modelId-$actionId" ?>">
 
     <h1><?= Html::encode( $this->title ) ?></h1>
 	<?php Pjax::begin(); ?>
-	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+	<?php // echo $this->render('_search', ['Model' => $searchModel]); ?>
 
     <p>
 		<?= Html::a( Yii::t( 'app', 'Create ') . $modelTitle, [ 'create' ], [ 'class' => 'btn btn-primary' ] ) ?>
@@ -25,7 +25,7 @@ include '_header.php';
 		],
 		
 		'columns' => array_merge(
-			method_exists( $model, 'attributeIndexList' ) ? $model->attributeIndexList() : array_keys( $model->attributes ),
+			method_exists( $Model, 'attributesIndexList' ) ? $Model->attributesIndexList() : array_keys( $Model->attributes ),
 			[ [ 'class' => 'yii\grid\ActionColumn' ] ]
 		),
 		
