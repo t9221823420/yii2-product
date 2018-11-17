@@ -4,7 +4,7 @@ namespace yozh\product\models;
 
 use Yii;
 use yozh\taxonomy\models\Taxonomy;
-use yozh\crud\models\BaseModel as ActiveRecord;
+use yozh\crud\models\BaseActiveRecord as ActiveRecord;
 use yozh\properties\PropertiesBehavior;
 
 class ProductModel extends ActiveRecord
