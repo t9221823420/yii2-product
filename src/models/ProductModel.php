@@ -17,16 +17,27 @@ class ProductModel extends ActiveRecord
 		return 'product';
 	}
 	
-	public function rules()
+	public function rules( $rules = [], $update = false )
 	{
-		return [
-			[ [ 'taxonomy_id', 'name' ], 'required' ],
-			[ [ 'taxonomy_id' ], 'integer' ],
-			[ [ 'price' ], 'number' ],
-			[ [ 'name' ], 'string', 'max' => 256 ],
-			[ [ 'units' ], 'string', 'max' => 10 ],
-			[ [ 'taxonomy_id' ], 'exist', 'skipOnError' => true, 'targetClass' => Taxonomy::className(), 'targetAttribute' => [ 'taxonomy_id' => 'id' ] ],
-		];
+		static $_rules;
+		
+		if( !$_rules || $update ) {
+			
+			$_rules = parent::rules( \yozh\base\components\validators\Validator::merge( [
+				
+				[ [ 'taxonomy_id', 'name' ], 'required' ],
+				[ [ 'taxonomy_id' ], 'integer' ],
+				[ [ 'price' ], 'number' ],
+				[ [ 'name' ], 'string', 'max' => 256 ],
+				[ [ 'units' ], 'string', 'max' => 10 ],
+				[ [ 'taxonomy_id' ], 'exist', 'skipOnError' => true, 'targetClass' => Taxonomy::className(), 'targetAttribute' => [ 'taxonomy_id' => 'id' ] ],
+			
+			], $rules ) );
+			
+		}
+		
+		return $_rules;
+		
 	}
 	
 	/**
@@ -47,7 +58,7 @@ class ProductModel extends ActiveRecord
 	{
 		return array_merge_recursive( parent::behaviors(), [
 			'properties' => PropertiesBehavior::className(),
-		]);
+		] );
 	}
 	
 	/**

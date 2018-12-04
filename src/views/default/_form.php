@@ -27,9 +27,9 @@ Icon::map( $this, Icon::FA );
 <div class="form">
 	
 	<?php $fields = $form->fields( $Model,
-		method_exists( $Model, 'attributesEditList' )
+		$Model instanceof \yozh\form\interfaces\AttributeActionListInterface
 			? $Model->attributesEditList()
-			: array_keys( $Model->attributes ),
+			: $Model->attributes(),
 		[ 'print' => false, ]
 	);
 	
