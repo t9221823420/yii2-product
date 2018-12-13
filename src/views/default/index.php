@@ -11,7 +11,7 @@ include __DIR__ . '/_header.php';
 
     <h1><?= Html::encode( $this->title ) ?></h1>
 	<?php Pjax::begin(); ?>
-	<?php // echo $this->render('_search', ['Model' => $searchModel]); ?>
+	<?php // echo $this->render('_search', ['Model' => $ModelSearch]); ?>
 
     <p>
 		<?= Html::a( Yii::t( 'app', 'Create ') . $modelTitle, [ 'create' ], [ 'class' => 'btn btn-primary' ] ) ?>
@@ -19,7 +19,7 @@ include __DIR__ . '/_header.php';
 	
 	<?= GridView::widget( [
 		'dataProvider' => $dataProvider,
-		//'filterModel' => $searchModel,
+		//'filterModel' => $ModelSearch,
 		'tableOptions' => [
 			'class' => 'table table-striped table-hover',
 		],

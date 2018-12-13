@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\helpers\Inflector;
 
-if( !isset($Model) && isset($searchModel) ){
-	$Model = $searchModel;
+if( !isset($Model) && isset($ModelSearch) ){
+	$Model = $ModelSearch;
 }
 
 $_params_['moduleId'] = $moduleId = $this->context->module->id;

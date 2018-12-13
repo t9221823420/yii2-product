@@ -16,15 +16,15 @@ class DefaultController extends Controller
 	public function actionIndex()
 	{
 		
-		$searchModel = new ProductModel();
+		$ModelSearch = new ProductModel();
 		
 		$dataProvider = new ActiveDataProvider([
-			'query' => $searchModel::find(),
+			'query' => $ModelSearch::find(),
 		]);
 		
 		
 		return $this->render('index', [
-			'searchModel' => $searchModel,
+			'ModelSearch' => $ModelSearch,
 			'dataProvider' => $dataProvider,
 		]);
 		
